@@ -1,13 +1,22 @@
-[project]
+[tool.poetry]
 name = "kaa_mqtt_client"
-description = """\
-This library implement Kaa MQTT client
-"""
-version = "0.0.1"
-authors = [
-    {name = "Oleksandr Burdeinyi",  email="aburdeinyi@kaaiot.io"}
-]
+version = "0.1.0"
+description = "This library implements Kaa MQTT client"
+authors = ["Oleksandr Burdeinyi <aburdeinyi@kaaiot.io>", "Viktor Kazanin <vkazanin@kaaiot.io>"]
+readme = "README.md"
 
+[tool.poetry.dependencies]
+python = "^3.12"
+paho-mqtt = "^1.5.1"
+PyYAML = "^6.0"
+  
+[tool.poetry.dev-dependencies]
+pytest = "^8.3.3"
+pytest-cov = "^6.0.0"
+pytest-benchmark = "^5.1.0"
+codecov = "^2.1.13"
+twine = "^5.1.1"
 
-[tool.distutils.bdist_wheel]
-universal = true
+[build-system]
+requires = ["poetry-core>=1.6.0"]
+build-backend = "poetry.core.masonry.api"
