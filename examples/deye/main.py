@@ -1,10 +1,10 @@
 import logging
 
-from constants import kaa_kpc_host, kaa_kpc_port, token, app_version
+from constants import kaa_kpc_host, kaa_kpc_port, token, app_version, tenant_id, app_name
 from kaa_mqtt_client import KaaMqttClient
 from inverter import get_metadata
 from deye_client import DeyeClient
-from dashboard import process_dashboards
+from kaa_mqtt_client.utils.dashboard import process_dashboards
 
 def run_endpoint(kpc_host, kpc_port, app_version, token, metadata, update_interval):
     kaa_client = KaaMqttClient(host=kpc_host, port=kpc_port, application_version=app_version, token=token, client_id='counter')
@@ -18,7 +18,7 @@ def run_endpoint(kpc_host, kpc_port, app_version, token, metadata, update_interv
 
 
 def main():
-    process_dashboards('./template/raw/', './template/output/')
+    process_dashboards(tenant_id, app_version, app_name, './template/raw/', './template/output/')
     metadata = get_metadata()
     run_endpoint(kaa_kpc_host, kaa_kpc_port, app_version, token, metadata, 120)
 

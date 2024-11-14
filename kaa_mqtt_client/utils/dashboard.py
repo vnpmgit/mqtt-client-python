@@ -1,9 +1,8 @@
 import json
 import os
-from constants import tenant_id, app_version, app_name
 
 
-def process_dashboards(template_folder:str, output_folder:str):
+def process_dashboards(tenant_id, app_version, app_name, template_folder:str, output_folder:str):
     if not tenant_id or not app_version or not app_name:
         print("\nNo 'tenant_id', 'app_version', or 'app_name' provided. Skipping template provision.\n")
         return
