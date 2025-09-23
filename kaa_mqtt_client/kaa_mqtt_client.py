@@ -1,3 +1,4 @@
+import time
 import json
 import logging
 import uuid
@@ -74,6 +75,7 @@ class KaaMqttClient(object):
             data=data
         )
 
+        print(f"Response from binary data upload: {res}")
 
     def publish_data_collection(self, payload: dict) -> None:
         if isinstance(payload, dict):
@@ -95,6 +97,8 @@ class KaaMqttClient(object):
         self.get_binary_upload_token()
         self.client.message_callback_add(self.topics.get_binary_token_status_topic(), self.add_bcx_token_handler)
         self.client.on_message = self.on_message
+
+        time.sleep(3)
         self.client.loop_start()
 
     def _check_send_result(self, result):
